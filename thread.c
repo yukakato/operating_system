@@ -1,26 +1,22 @@
-#include <pthread.h>
 #include <stdio.h>
+#include <pthread.h>
 
-void *thread1(void *arg) {
+void *thread_A(void *arg) {
     for (;;) printf("Thread A\n");
+    pthread_exit(0);
 }
 
-void *thread2(void *arg) {
+void *thread_B(void *arg) {
     for (;;) printf("Thread B\n");
-}
-
-void *thread3(void *arg) {
-    for (;;) printf("Thread C\n");
+    pthread_exit(0);
 }
 
 int main() {
-    pthread_t a, b, c;
-    pthread_create(&a, NULL, thread1, NULL);
-    pthread_create(&b, NULL, thread2, NULL);
-    pthread_create(&c, NULL, thread3, NULL);
-
-    pthread_join(a, NULL);
-    pthread_join(b, NULL);
-    pthread_join(c, NULL);
-    return 0;
+    pthread_t t1;
+    pthread_t t2;
+    
+    pthread_create(&t1, NULL, (void *)thread_A, 0);
+    pthread_create(&t2, NULL, (void *)thread_B, 0);
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
 }
