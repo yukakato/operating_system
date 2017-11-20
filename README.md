@@ -1,7 +1,12 @@
 # オペレーティングシステム講義用
+### 基になる擬似コード
+- 河野健二『オペレーティングシステムの仕組み』（朝倉書店）
+
 ### コンパイル方法（pthread）
 
-`gcc -o thread thread.c -lpthread`
+```
+gcc -o thread thread.c -lpthread
+```
 
 ### ファイル構成
 - fork.c: 新しいプロセスの生成
